@@ -11,6 +11,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatButtonModule} from '@angular/material/button';
 import { FormsModule } from '@angular/forms';
 import {MatListModule} from '@angular/material/list';
+import { PublishService } from './core/publish.service';
 
 
 
@@ -31,7 +32,7 @@ import {MatListModule} from '@angular/material/list';
     FormsModule,
     MatListModule
   ],
-  providers: [],
+  providers: [PublishService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

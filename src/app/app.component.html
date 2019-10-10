@@ -1,6 +1,7 @@
 <mat-toolbar color="primary" class="mat-elevation-z4">
   Litteraturliste-appen
 </mat-toolbar>
+
 <div class="reference-container">
   <mat-card class="reference-card">
     <mat-card-header class="card-header">
@@ -8,26 +9,34 @@
       <mat-card-title>Tilføj reference</mat-card-title>
     </mat-card-header>
     <mat-card-content class="card-content">
-      <form (keyup.enter)="onSubmit()">
-        <mat-form-field>
-          <input matInput placeholder="Title" name="referenceTitle" [(ngModel)]="referenceTitle">
+      <form class="add-reference-form" (keyup.enter)="onSubmit()">
+        <mat-form-field class="input-size-md">
+          <input matInput placeholder="Titel" name="referenceTitle" [(ngModel)]="reference.title">
+        </mat-form-field>
+        <mat-form-field class="input-size-md">
+          <input matInput placeholder="Forfatter" name="referenceAuthor" [(ngModel)]="reference.author">
         </mat-form-field>
       </form>
     </mat-card-content>
     <mat-card-actions class="card-action">
-      <button class="submit-button" type="submit" (click)="onSubmit()" mat-button color="primary">Tilføj reference</button>
+      <button mat-button type="submit" (click)="onSubmit()"  color="primary">Tilføj reference</button>
     </mat-card-actions>
   </mat-card>
 
   <mat-card class="reference-card">
-      <mat-card-header class="card-header">
-        <mat-icon mat-card-avatar>list</mat-icon>
-        <mat-card-title>Litteraturliste</mat-card-title>
-      </mat-card-header>
-      <mat-card-content class="card-content">
-        <mat-list>
-          <mat-list-item role="listitem" *ngFor="let reference of referenceList">{{reference}}</mat-list-item>
-        </mat-list>
-      </mat-card-content>
-    </mat-card>
+    <mat-card-header class="card-header">
+      <mat-icon mat-card-avatar>list</mat-icon>
+      <mat-card-title>Referenceliste</mat-card-title>
+    </mat-card-header>
+    <mat-card-content class="card-content">
+      <mat-list>
+        <mat-list-item role="listitem" *ngFor="let reference of referenceList">
+          - {{reference.author? reference.author : 'Forfatter' }}, {{reference.title? reference.title : 'Titel'}}
+        </mat-list-item>
+      </mat-list>
+    </mat-card-content>
+    <mat-card-actions class="card-action">
+      <button mat-button type="submit" (click)="publishReferenceList()" color="primary">Publish</button>
+    </mat-card-actions>
+  </mat-card>
 </div>

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PublishService } from './core/publish.service';
+import { BaseReference } from './core/model/base-reference';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +9,24 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
 
-  referenceList = [];
-
+  referenceList: BaseReference[] = [];
   title = 'litteratur-liste-appen';
+  reference: BaseReference = {};
 
-  referenceTitle: string = "";
+  constructor(private publishService: PublishService) {
+  }
 
   public onSubmit() {
-    this.referenceList.push(this.referenceTitle);
+    this.referenceList.push(this.reference);
     this.resetForm();
   }
 
   public resetForm() {
-    this.referenceTitle = "";
+    this.reference = {};
+  }
+
+  public publishReferenceList() {
+    this.publishService.publishReferenceList(this.referenceList);
   }
 
 }
